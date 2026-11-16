@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Knowledge Human — TikTok sign-in</title>
+<style>
+body{font-family:"Segoe UI",Tahoma,Arial,sans-serif;max-width:640px;margin:60px auto;padding:0 16px;line-height:1.8;color:#1d1d1f;background:#fff;text-align:center}
+a{color:#0a58ca}.muted{color:#666;font-size:.9rem}
+</style>
+</head>
+<body>
+<h1>Knowledge Human</h1>
+<p id="msg">جارٍ إعادتك إلى المساعد…<br><span class="muted">Returning you to the assistant…</span></p>
+<p class="muted">This page only forwards TikTok's one-time sign-in result to the owner's own computer (localhost). Nothing is stored here.</p>
+<script>
+(function () {
+  var q = window.location.search || "";
+  var target = "http://localhost:8788/tiktok/callback" + q;
+  var p = new URLSearchParams(q);
+  if (!p.get("code") && !p.get("error")) {
+    document.getElementById("msg").textContent = "لا يوجد رمز دخول في الرابط. No sign-in code found.";
+    return;
+  }
+  window.location.replace(target);
+})();
+</script>
+</body>
+</html>
